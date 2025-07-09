@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Auth Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color:black;
+            background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .card-container {
+            background-color: #f1f5fa;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
+            width: 320px;
+            max-width: 90%;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: black;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: black;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #7f8c8d;
+            border-radius: 8px;
+            
+            color:black;
+            box-sizing: border-box; /* Ensures padding doesn't increase width */
+        }
+
+        input::placeholder {
+            color: #bdc3c7;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            opacity: 0.9;
+            box-shadow: 0px 0px 15px rgba(79, 172, 254, 0.6);
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .link-button {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .link-button p {
+            margin: 5px 0;
+            color: #1b1c1d;
+        }
+
+        .link-button a {
+            color: #00f2fe;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .link-button a:hover {
+            color: #4facfe;
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card-container">
+        <h2 id="formTitle">  Let's get started!</h2>
+        
+
+        <form id="registerForm">
+            <label for="regUsername">Username</label>
+            <input type="text" id="regUsername" placeholder="Enter your username" required />
+
+            <label for="regEmail">Email ID</label>
+            <input type="email" id="regEmail" placeholder="Enter your email" required />
+
+            <label for="regPassword">Password</label>
+            <input type="password" id="regPassword" placeholder="Create a password" required />
+
+            <label for="regConfirm">Confirm Password</label>
+            <input type="password" id="regConfirm" placeholder="Confirm password" required />
+
+            <div id="regError" class="error"></div>
+            <button type="submit">Register</button>
+
+            <div class="link-button">
+                <p>Already have an account? <a href="#" onclick="switchToLogin()">Login here</a></p>
+            </div>
+        </form>
+<!-- login page-->
+        <form id="loginForm" class="hidden">
+            <label for="loginEmail">Email ID</label>
+            <input type="email" id="loginEmail" placeholder="Enter your email" required />
+
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="Enter your password" required />
+
+            <div id="loginError" class="error"></div>
+            <button type="submit">Login</button>
+
+            <div class="link-button">
+                <p>Don't have an account? <a href="#" onclick="switchToRegister()">Register here</a></p>
+                <p><a href="#" onclick="showForgotPassword()">Forgot Password?</a></p>
+            </div>
+        </form>
+
+    </div>
+    <script>
+        const ADMIN_EMAIL = "joice123@gmail.com";
+        const ADMIN_PASSWORD = "joice123";
+        const ADMIN_USERNAME = "JoiceMercy";
+
+        const registerForm = document.getElementById("registerForm");
+        const loginForm = document.getElementById("loginForm");
+        const formTitle = document.getElementById("formTitle");
+
+        function switchToLogin() {
+            registerForm.classList.add("hidden");
+            loginForm.classList.remove("hidden");
+            formTitle.textContent = "Login";
+            document.getElementById("regError").textContent = ""; // Clear errors when switching
+            document.getElementById("loginError").textContent = ""; // Clear errors when switching
+            registerForm.reset();
+            loginForm.reset();
+        }
+
+        function switchToRegister() {
+            loginForm.classList.add("hidden");
+            registerForm.classList.remove("hidden");
+            formTitle.textContent = "Register";
+            document.getElementById("regError").textContent = ""; // Clear errors when switching
+            document.getElementById("loginError").textContent = ""; // Clear errors when switching
+            registerForm.reset();
+            loginForm.reset();
+        }
+
+        registerForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const username = document.getElementById("regUsername").value.trim();
+            const email = document.getElementById("regEmail").value.trim();
+            const password = document.getElementById("regPassword").value;
+            const confirm = document.getElementById("regConfirm").value;
+            const errorDiv = document.getElementById("regError");
+
+            errorDiv.textContent = "";
+
+            if (password !== confirm) {
+                errorDiv.textContent = "Passwords do not match!";
+                return;
+            }
+
+            if (username.length < 3) {
+                errorDiv.textContent = "Username must be at least 3 characters!";
+                return;
+            }
+
+            if (password.length < 6) {
+                errorDiv.textContent = "Password must be at least 6 characters!";
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            // Check if username already exists
+            const existingUsername = users.find(user => user.username === username);
+            if (existingUsername) {
+                errorDiv.textContent = "Username already taken!";
+                return;
+            }
+
+            // Check if email already exists (including admin email)
+            const existingEmail = users.find(user => user.email === email);
+            if (existingEmail || email === ADMIN_EMAIL) {
+                errorDiv.textContent = "Email is already registered!";
+                return;
+            }
+
+            // Generate unique user ID. Consider uniqueness across existing IDs.
+            let userId;
+            let isUnique = false;
+            while (!isUnique) {
+                const usernamePrefix = username.substring(0, Math.min(username.length, 3)).toUpperCase();
+                const randomNumber = Math.floor(100 + Math.random() * 900); // 3-digit number
+                const newId = usernamePrefix + randomNumber;
+                if (!users.some(user => user.userId === newId)) { // Check if generated ID is unique
+                    userId = newId;
+                    isUnique = true;
+                }
+            }
+
+
+            const newUser = {
+                username,
+                email,
+                password,
+                userId,
+                role: "user", // Default role for new registrations
+                idChanged: false // Flag to allow ID change only once
+            };
+            users.push(newUser);
+            localStorage.setItem("users", JSON.stringify(users));
+            localStorage.setItem("currentUser", JSON.stringify(newUser)); // Log in the new user
+
+            alert(`Registered successfully! Your User ID is: ${userId}`);
+            registerForm.reset();
+            window.location.href = "user.html"; // Redirect to user dashboard immediately
+        });
+
+        loginForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById("loginEmail").value.trim();
+            const password = document.getElementById("loginPassword").value;
+            const errorDiv = document.getElementById("loginError");
+
+            errorDiv.textContent = "";
+
+            // --- Check for Hardcoded Admin Credentials First ---
+            if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+                localStorage.setItem("currentUser", JSON.stringify({
+                    username: ADMIN_USERNAME,
+                    email: ADMIN_EMAIL,
+                    role: "admin" // Explicitly mark as admin
+                }));
+                alert("Welcome Admin!");
+                window.location.href = "admin.html"; // Redirect to admin dashboard
+                return;
+            }
+
+            // --- If not Hardcoded Admin, check Registered Users ---
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            const foundUser = users.find(user => user.email === email && user.password === password);
+
+            if (foundUser) {
+                // If a user is found, their 'role' property determines their dashboard
+                localStorage.setItem("currentUser", JSON.stringify(foundUser)); // Store the found user object as is (it has userId and role)
+                if (foundUser.role === "admin") { // This handles promoted users
+                    alert(`Welcome back, Admin ${foundUser.username}!`);
+                    window.location.href = "admin.html";
+                } else { // Regular user (role: "user")
+                    alert(`Welcome ${foundUser.username}!`);
+                    window.location.href = "user.html";
+                }
+            } else {
+                errorDiv.textContent = "Invalid email or password!";
+            }
+        });
+
+        function showForgotPassword() {
+            const email = prompt("Enter your registered email:");
+            if (!email) return;
+
+            if (email.trim() === ADMIN_EMAIL) {
+                alert("Admin password cannot be reset here. Please contact system administrator.");
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            let found = false;
+
+            users = users.map(user => {
+                if (user.email === email.trim()) {
+                    const newPass = prompt("Enter your new password:");
+                    if (newPass) {
+                        if (newPass.length < 6) {
+                            alert("New password must be at least 6 characters long!");
+                            return user; // Don't update if invalid
+                        }
+                        user.password = newPass; // IMPORTANT: In a real app, hash this new password!
+                        found = true;
+                    }
+                }
+                return user;
+            });
+
+            if (found) {
+                localStorage.setItem("users", JSON.stringify(users));
+                alert("Password updated successfully!");
+            } else {
+                alert("Email not found!");
+            }
+        }
+    </script>
+</body>
+
+</html>
