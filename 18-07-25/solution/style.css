@@ -1,0 +1,104 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: #fafafa;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+.chat-box {
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background: #f8f8ff;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column; 
+}
+
+
+.user {
+  align-self: flex-end;            
+  background-color: #d0f0fd;
+  padding: 8px 12px;
+  border-radius: 12px;
+  margin: 5px 0;
+  max-width: 80%;
+  text-align: right;
+  display: block;                  
+  word-wrap: break-word;
+}
+
+
+.bot {
+  align-self: flex-start;        
+  background-color: #eef;
+  padding: 8px 12px;
+  border-radius: 12px;
+  margin: 5px 0;
+  max-width: 80%;
+  text-align: left;
+  display: block;                
+  word-wrap: break-word;
+}
+
+
+.input-box {
+  display: flex;
+  gap: 10px;
+}
+
+.input-box input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.input-box button {
+  padding: 8px 15px;
+  background-color: #7a4ef2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style for question suggestions */
+.question-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 10px;
+  background: #f1f1ff;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.question-list li {
+  background-color: #a400ff;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.question-list li:hover {
+  background-color: #8900d1;
+}
