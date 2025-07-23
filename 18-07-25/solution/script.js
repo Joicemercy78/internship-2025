@@ -9,20 +9,19 @@ async function fetchQA() {
     const decoded = atob(data.content);
     qa = JSON.parse(decoded);
 
-    // Show welcome message after loading data
+    //  welcome message
     showMessage("Hello! I'm Joy. Ask me anything!", "bot");
-  } catch (err) {
+  } catch (err) { 
     console.error("Failed to fetch data:", err);
   }
 }
-
 fetchQA();
 
 function send() {
   const input = document.getElementById("userInput");
   const chatBox = document.getElementById("chatBox");
   const userQuestion = input.value.trim();
-
+// checks user giving a input or not
   if (!userQuestion) return;
 
   showMessage(userQuestion, "user");
@@ -35,7 +34,7 @@ function send() {
     showMessage(match.answer, "bot");
   } else {
     showMessage("Sorry, I don't understand that yet.", "bot");
-    showQuestionList(); // show list after Sorry
+    showQuestionList(); 
   }
 
   chatBox.scrollTop = chatBox.scrollHeight;
@@ -49,6 +48,7 @@ function showMessage(text, type) {
   msg.textContent = text;
   chatBox.appendChild(msg);
 }
+
 
 function showQuestionList() {
   const chatBox = document.getElementById("chatBox");
@@ -72,7 +72,6 @@ function showQuestionList() {
     questionList.appendChild(li);
   });
 
-  // Add suggestions inside chat
   chatBox.appendChild(questionList);
   chatBox.scrollTop = chatBox.scrollHeight;
 }
