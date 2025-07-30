@@ -6,6 +6,7 @@ AOS (Animate On Scroll) :
   - It makes websites feel more dynamic.
 --- 
 Bootstrap :
+---
   - Navbar
   - card
       -> card-body, card-title, card-text
