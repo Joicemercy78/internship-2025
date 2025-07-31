@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>User Registration</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="d-flex align-items-center justify-content-center min-vh-100">
+  <div class="card shadow p-4" style="max-width: 420px; width: 100%;">
+    <h4 class="text-center fw-bold text-primary mb-2">User Registration</h4>
+    <p class="text-center text-muted">Create your account to get started</p>
+
+    <form id="registerForm" novalidate autocomplete="off">
+      <div class="form-group mb-3" >
+        <label class="form-label"><i class="bi bi-person"></i> Username</label>
+        <input type="text" class="form-control" id="username" required placeholder="Enter your username" >
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="form-label"><i class="bi bi-envelope"></i> Email</label>
+        <input type="email" class="form-control" id="email" required placeholder="Enter your email" >
+      </div>
+
+      <div class="form-group mb-3 position-relative">
+        <label class="form-label"><i class="bi bi-lock"></i> Password</label>
+        <div class="input-group">
+          <input type="password" class="form-control" id="password" required placeholder="Enter your password" >
+          <span class="input-group-text" style="cursor:pointer" onclick="togglePassword()">
+            <i class="bi bi-eye-slash" id="toggleIcon"></i>
+          </span>
+        </div>
+        <small class="text-muted">Password must be 8+ characters with letters, numbers, and special characters</small>
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="form-label"><i class="bi bi-person-badge"></i> User ID</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="userId" placeholder="Enter User ID or auto-generate" >
+          <button type="button" class="btn btn-outline-secondary" onclick="generateUserId()">
+            <i class="bi bi-arrow-repeat"></i> Generate
+          </button>
+        </div>
+      </div>
+
+      <div id="regError" class="text-danger small mb-2"></div>
+      
+      <button type="submit" class="btn btn-primary w-100">Create Account</button>
+
+      <div class="text-center mt-3">
+        Already have an account? <a href="login.html">Sign in</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Function to toggle password visibility
+  function togglePassword() {
+    const passwordField = document.getElementById("password");
+    const toggleIcon = document.getElementById("toggleIcon");
+
+    // Check current type and switch it
+    if (passwordField.type === "password") {
+      passwordField.type = "text"; // Show password as text
+      toggleIcon.classList.replace("bi-eye-slash", "bi-eye"); // Change icon to 'eye'
+    } else { 
+      passwordField.type = "password"; // Hide password
+      toggleIcon.classList.replace("bi-eye", "bi-eye-slash"); // Change icon to 'eye-slash'
+    }
+  }
+
+  // Function to generate a User ID
+  function generateUserId() {
+    const usernameInput = document.getElementById("username").value.trim();
+    const usernamePrefix = usernameInput.slice(0, 3).toUpperCase();  // to get 3 characters
+    const randomNumber = Math.floor(100 + Math.random() * 900);  // Ensures a 3-digit number (100-999)
+
+    document.getElementById("userId").value = usernamePrefix + randomNumber;  // Combine prefix and number(type coercion)
+  }
+
+  // Get the registration form element
+  const registerForm = document.getElementById("registerForm");
+  registerForm.addEventListener("submit", function (event) {
+  event.preventDefault();  //default form submission behavior
+
+    // Get values from input fields
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;   // Don't trim password
+    const userId = document.getElementById("userId").value.trim();
+    const errorMessageDiv = document.getElementById("regError");
+    
+    errorMessageDiv.textContent = "";   // Clear any previous error messages
+
+    // --- Input Validation Checks ---
+    // 1. Validate Email Format
+    if (!email.includes("@") || !email.endsWith(".com")) {
+      errorMessageDiv.textContent = "Email must contain '@' and end with '.com'.";
+      return;  // Stop function execution if validation fails
+    }
+
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{8,}$/;
+    if (!passwordRegex.test(password)) {
+      errorMessageDiv.textContent = "Password must be 8+ characters with at least one letter, one number, and one special character.";
+      return;
+    }
+
+    // 3. Validate User ID is not empty
+    if (!userId) {
+      errorMessageDiv.textContent = "Please enter or generate a User ID.";
+      return;
+    }
+
+    // --- Check for Existing Users in Local Storage ---
+
+    // Get existing users from local storage, or initialize an empty array if none exist
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Check if email already exists
+    if (users.some(user => user.email === email)) {
+      errorMessageDiv.textContent = "This email is already registered. Please sign in or use a different email.";
+      return;
+    }
+
+    // Check if User ID already exists
+    if (users.some(user => user.userId === userId)) {
+      errorMessageDiv.textContent = "This User ID is already taken. Please generate a new one or enter a different ID.";
+      return;
+    }
+
+    // if all validations pass, create a new user object
+    const newUser = {
+      username: username,
+      email: email,
+      password: password, // In a real application, never store passwords directly like this!
+      userId: userId,
+      role: "user" // Assign a default role
+    };
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("currentUser", JSON.stringify(newUser));
+
+    // Redirect to the user dashboard page
+    window.location.href = "user.html";
+  });
+</script>
+
+</body>
+</html>
