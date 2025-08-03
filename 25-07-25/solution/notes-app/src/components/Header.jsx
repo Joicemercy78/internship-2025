@@ -1,31 +1,40 @@
-import React from "react";
-import { Box, Typography, Stack } from "@mui/material";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
 
-const Header = () => {
+import React from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import {AppBar, Toolbar, Typography, IconButton} from '@mui/material';
+
+const Header = ({ onMenuClick }) => {
   return (
-    <Box
-      sx={{
-        backgroundColor: "#e6e6fa", // Light violet (lavender)
-        padding: "16px",
-        borderBottom: "2px solid #b39ddb",
-        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-      }}
-    >
-      <Stack direction="row" alignItems="center" spacing={1}>
-        <MenuBookIcon fontSize="large" sx={{ color: "#7e57c2" }} />
-        <Typography
-          variant="h4"
-          fontWeight="bold"
-          sx={{ color: "#5e35b1", fontFamily: "serif" }}
+    <AppBar position="static" sx={{ backgroundColor: 'white' }  }>
+      <Toolbar>
+        <IconButton
+          edge="start"
+          color="black"
+          aria-label="menu"
+          sx={{ mr: 2 }}
+          onClick={onMenuClick}
         >
+          <MenuIcon />
+        </IconButton>
+        <MenuBookIcon fontSize="large" sx={{ color: "black" }} />
+        <Typography variant="h4" component="div" 
+        sx={{ 
+          flexGrow: 1,
+          color: "black",
+          ml: 3
+           }}>
           My Notebook
         </Typography>
-      </Stack>
-    </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 
 export default Header;
+
+
+
+
 
 
