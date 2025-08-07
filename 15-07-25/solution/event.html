@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eventpage</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+</head>
+<body>
+
+</body> 
+<script>
+
+// nav bar 
+const nav_cont = document.createElement("div");
+nav_cont.className=" container d-flex flex-row justify-content-around"
+nav_cont.setAttribute("height", "100px");
+
+//logo 
+const logo = document.createElement("img");
+  logo.setAttribute("src", "https://pumas.ai/images/pumasai/logos/pumasai.svg");
+  logo.setAttribute("height", "90px");
+  logo.style.width= "200px";
+  nav_cont.append(logo) 
+
+
+//nav item container
+const ni_cont = document.createElement("div")
+ni_cont.className = "d-flex flex-column justify-content-center "
+
+//nav item1 container 
+const ni1_cont = document.createElement("div")
+ni1_cont.className= "d-flex flex-row justify-content-end "
+
+const nav_item1 = document.createElement("p");
+nav_item1.textContent="Company" 
+nav_item1.className= "m-4 "
+
+const nav_item2 = document.createElement("p");
+nav_item2.textContent="Media"
+nav_item2.className= "m-4 "
+
+const nav_item3 = document.createElement("p");
+nav_item3.textContent="Career"
+nav_item3.className= "m-4"
+
+const nav_item4 = document.createElement("p");
+nav_item4.textContent="Resources"
+nav_item4.className= "m-4"
+
+ni1_cont.append(nav_item1, nav_item2, nav_item3, nav_item4)
+
+//nav item2 container
+
+const ni2_cont = document.createElement("div")
+ni2_cont.className= "d-flex flex-row justify-content-end "
+
+const nav2_item1 = document.createElement("p");
+nav2_item1.textContent="Our Products" 
+nav2_item1.className= "m-4 mt-0 fs-5"
+
+const nav2_item2 = document.createElement("p");
+nav2_item2.textContent="Our Services"
+nav2_item2.className= "m-4 mt-0 fs-5"
+
+const nav2_item3 = document.createElement("p");
+nav2_item3.textContent="Our Customers "
+nav2_item3.className= "m-4 mt-0 fs-5"
+// console.log("ni2.cont");
+ni2_cont.append(nav2_item1, nav2_item2, nav2_item3)
+
+ni_cont.append(ni1_cont, ni2_cont)
+nav_cont.appendChild(ni_cont)
+
+//c_button (clickabe)
+
+   var c_button = document.createElement("button")
+   c_button.textContent = "Contact us"   
+   c_button.className = " btn btn-outline-secondary mt-4"
+   c_button.style.height="50px"
+   c_button.style.width="200px"
+   c_button.addEventListener('click', function() {
+    alert("we'll reachout soon")
+   })
+  //  console.log(c_button);
+ 
+nav_cont.appendChild(c_button)
+document.body.append(nav_cont)
+
+//  ************************************************************************************
+
+// image 
+  var image = document.createElement("img");
+  image.setAttribute("src", "https://i.ibb.co/BVz0vwPd/background-image.png");
+  image.setAttribute("style", "height:450px; width:100%;");
+  image.style.backgroundImage = "cover";
+  document.body.append(image) 
+
+  // ***********************************************************************************
+
+ //container 
+  const cont = document.createElement("div");
+  cont.style.paddingRight = "300px"
+  cont.style.paddingLeft = "300px"
+  cont.style.width = "100vw"
+
+    //news 
+
+  var news = document.createElement("a");
+   news.setAttribute("href", "#")
+   news.textContent = " CATCH UP ON THE LATEST NEWS"
+   news.className = "d-flex flex-row justify-content-end fs-5"
+   news.style.alignItems = "left";
+
+  //  console.log(news);
+  cont.appendChild(news)  
+   
+// event heading 
+  var event_head = document.createElement("h1");
+  event_head.textContent = "Events"
+  event_head.className="mt-4 mb-5 fs-1"
+  event_head.style.textAlign = "center"
+  // console.log(head); 
+  cont.appendChild(event_head)
+
+  //Event para conntainer 
+   var event_cont = document.createElement("DIV");
+   event_cont.className = "d-flex flex-row justify-content-center"
+   event_cont.style.alignItems = "left";
+  
+// event para1
+  var event_para1 = document.createElement("p");
+  event_para1.textContent = "Explore a variety of events designed to inspire, educate, and connect you with like-minded individuals. From insightful seminars to engaging workshops and vibrant networking opportunities, there's something for everyone. We look forward to seeing you at our next event!" 
+  event_para1.style.fontSize="20px";
+  // // console.log(event_para);
+  cont.appendChild(event_para1)
+
+// event para2
+  var event_para2 = document.createElement("p");
+   event_para2.textContent = "Don't miss out - subscribe now to stay updated on our latest events and exclusive offers."
+  cont.style.fontSize="20px";
+  
+  // console.log(event_para);
+  cont.appendChild(event_para2)
+  document.body.appendChild(event_cont)
+
+  // *****************************************************************************
+  
+  //follow us container
+
+  var f_cont = document.createElement("div");
+  f_cont.className = "d-flex flex-row justify-content-end m-5 flex-wrap"
+  
+  
+  // console.log(f_cont);
+ 
+   // f_para 
+   var f_para = document.createElement("p");
+   f_para.textContent="Follow us"
+   f_para.className = "m-2 fs-5"
+  //  console.log(f_para)
+   f_cont.appendChild(f_para)
+
+    //twitter                                                                        (clickabe)
+   var twitter = document.createElement("img");
+   twitter.setAttribute("src", "https://i.ibb.co/j94Cz7CM/twitter.png");
+   twitter.setAttribute("height", "30px");
+   twitter.setAttribute("width", "40px");
+   twitter.className = "m-2"
+  //  console.log(twitter);
+   f_cont.appendChild(twitter) 
+
+   //linkdin                                                                         (clickabe)
+   var linkdin = document.createElement("img");
+   linkdin.setAttribute("src", "https://i.ibb.co/Gv9GzRGF/linkdin.png");
+   linkdin.setAttribute("style", "height:30px; width:30px");
+   linkdin.className = "m-2"
+  //  console.log(twitter);
+   f_cont.appendChild(linkdin) 
+
+   //s_button (clickabe)
+
+   var s_button = document.createElement("button")
+   s_button.textContent = "Subscribe"   
+   s_button.className = "p-2  ml-2"
+   s_button.addEventListener('click', function(){
+    alert("Subscribed")
+   })
+  //  console.log(s_button);
+  f_cont.appendChild(s_button)
+  
+  cont.appendChild(f_cont);
+
+  //horizondal row 
+  const hr = document.createElement("hr");
+  hr.className = " border-2 opacity-100";
+  cont.appendChild(hr)
+
+//*************************************************************************************************
+
+  //card page 
+ // upcomming event                                                   (Clickable)
+  var ue_head = document.createElement("h2");
+  ue_head.textContent = " Upcoming Events";
+  ue_head.setAttribute("onclick", "ue()");
+  ue_head.id="upcommimg event"
+  ue_head.className="mt-2 , mb-5 , fs-3"
+  console.log(ue_head);
+  cont.appendChild(ue_head) 
+
+//ue container 
+  const ue_cont = document.createElement("div");
+  
+  // all events                                                        (clickable)
+  const allevents = document.createElement("h5");
+  allevents.id="all_events";
+  allevents.textContent = "All Events"
+  allevents.className="mt-3 , mb-5"
+  ue_cont.appendChild(allevents)
+
+  //all events card container 
+  const alleve_cont = document.createElement("div");
+  // document.getElementById("all_events").style.display="block";
+
+  // card container 
+  const card_cont = document.createElement("div");
+  card_cont.className = "container row d--flex flex-row justify-content-around "
+  
+  
+
+ //                             *******************************************
+
+    
+//card1 
+// cardEach container 
+   const card1each_cont = document.createElement("div");
+    card1each_cont.className = " mb-5 m-3 col-4" 
+    card1each_cont.style.borderBottom = "10px solid #2c628d"
+
+  //card1 image 
+  var card1_img = document.createElement("img");
+  card1_img.setAttribute("src", " https://i.ibb.co/6cszZ0NJ/conf-juliacon2025.png")
+  card1_img.className = "card-img-top"  
+  card1each_cont.appendChild(card1_img) 
+
+  //card1 para 
+  var card1_para = document.createElement("p");
+  card1_para.textContent = "From Layers to Legends: Julius Krumbiegel at JuliaCon 2025" 
+  card1_para.className ="fs-5  p-2";
+  card1each_cont.appendChild(card1_para)
+
+  //read more 
+
+  var rm = document.createElement("a");
+   rm.setAttribute("href", "#")
+   rm.textContent = " Read More"
+   rm.className = " pb-0"
+  //  console.log(rm);
+   
+  card1each_cont.appendChild(rm)
+
+  card_cont.appendChild(card1each_cont)
+
+   //                             ********************************************
+
+//card2 
+// cardEach container 
+   const card2each_cont = document.createElement("div");
+    card2each_cont.className = " mb-5 m-3 col-4" 
+    card2each_cont.style.borderBottom = "10px solid #2c628d"
+    
+
+  //card2 image 
+  var card2_img = document.createElement("img");
+  card2_img.setAttribute("src", " https://pumas.ai/content/uploads/2025.07.28-30-capetown-workshop-event.png")
+  card2_img.className = "card-img-top" 
+  
+  card2each_cont.appendChild(card2_img) 
+
+  //card2 para 
+  var card2_para = document.createElement("p");
+  card2_para.textContent = "ONSITE in South Africa! 3-Day Hands-on-Workshop: NLME Modeling Workflows Using Pumas" 
+  card2_para.className ="fs-5  p-2";
+  card2each_cont.appendChild(card2_para)
+
+  //read more 
+  const rm2= document.createElement("a");
+  rm2.setAttribute("href", "#")
+  rm2.textContent ="Read More" 
+  card2each_cont.appendChild(rm2)
+  // rm2.addEventListener('click', () => (
+  //   alert("Details")
+  // )) 
+  card2each_cont.appendChild(rm2)
+
+  card_cont.appendChild(card2each_cont)
+
+//                                 ********************************************
+
+//card3 
+// cardEach container 
+   const card3each_cont = document.createElement("div");
+    card3each_cont.className = "mb-5 m-3  col-4" 
+    card3each_cont.style.borderBottom = "10px solid #2c628d"   
+  //card3 image 
+  var card3_img = document.createElement("img");
+  card3_img.setAttribute("src", " https://pumas.ai/content/uploads/workshop-bedd2025.png")
+  card3_img.className = "card-img-top" 
+  
+  card3each_cont.appendChild(card3_img)
+
+  //card2 para 
+  var card3_para = document.createElement("p");
+  card3_para.textContent = "Certificate Course: Bioequivalence Analysis in Drug Development" 
+  card3_para.className ="fs-5  p-2";
+  card3each_cont.appendChild(card3_para)
+
+  //read more 
+  const rm3= document.createElement("a");
+  rm3.setAttribute("href", "#")
+  rm3.textContent ="Read More" 
+  card3each_cont.appendChild(rm3)
+  
+
+  card_cont.appendChild(card3each_cont)
+  
+  //                     *****************************************************
+
+
+  //card4
+  // cardEach container 
+
+   const card4each_cont = document.createElement("div");
+    card4each_cont.className = " mb-5 m-3  col-4" 
+    card4each_cont.style.borderBottom = "10px solid #2c628d"
+    
+
+  //card4 image 
+  var card4_img = document.createElement("img");
+  card4_img.setAttribute("src", " https://pumas.ai/content/uploads/workshop-aidd2025.png")
+  card4_img.className = "card-img-top"  
+  card4each_cont.appendChild(card4_img) 
+
+  //card4 para 
+  var card4_para = document.createElement("p");
+  card4_para.textContent = "Certificate Course: AI in Drug Development" 
+  card4_para.className ="fs-5  p-2";
+  card4each_cont.appendChild(card4_para)
+
+  //read more 
+  const rm4= document.createElement("a");
+  rm4.setAttribute("href", "#")
+  rm4.textContent ="Read More"
+  card4each_cont.appendChild(rm4)
+
+  card_cont.appendChild(card4each_cont)
+
+   //                             ****************************************
+
+//card5
+// cardEach container 
+  const card5each_cont = document.createElement("div");
+  card5each_cont.className = " mb-5 m-3 col-4" 
+  card5each_cont.style.borderBottom = "10px solid #2c628d"
+    
+
+  //card5 image 
+  var card5_img = document.createElement("img");
+  card5_img.setAttribute("src", " https://pumas.ai/content/uploads/2025.07.28-30-capetown-workshop-event.png")
+  card5_img.className = "card-img-top" 
+  
+  card5each_cont.appendChild(card5_img) 
+
+  //card5 para 
+  var card5_para = document.createElement("p");
+  card5_para.textContent = "ONSITE in South Africa! 3-Day Hands-on-Workshop: NLME Modeling Workflows Using Pumas"; 
+  card5_para.className ="fs-5  p-2";
+  card5each_cont.appendChild(card5_para)
+
+  //read more 
+  const rm5= document.createElement("a");
+  rm5.setAttribute("href", "#");
+  rm5.textContent ="Read More";
+  card5each_cont.appendChild(rm5);
+
+  card_cont.appendChild(card5each_cont);
+
+//                                 ********************************************
+
+//card6 
+// cardEach container 
+   const card6each_cont = document.createElement("div");
+   card6each_cont.id = "card_6";
+   card6each_cont.className = " mb-5 m-3 col-4"; 
+   card6each_cont.style.borderBottom = "10px solid #2c628d";
+   
+  //card6 image 
+  var card6_img = document.createElement("img");
+  card6_img.setAttribute("src", "https://pumas.ai/content/uploads/conf-acop2025.png")
+  card6_img.className = "card-img-top" 
+  
+  card6each_cont.appendChild(card6_img) 
+
+  //card6 para 
+  var card6_para = document.createElement("p");
+  card6_para.textContent = "Certificate Course: Bioequivalence Analysis in Drug Development" 
+  card6_para.className ="fs-5  p-2";
+  card6each_cont.appendChild(card6_para)
+
+  //read more 
+  const rm6= document.createElement("a");
+  rm6.setAttribute("href", "#");
+  rm6.textContent="Read More"
+  card6each_cont.appendChild(rm6)
+
+  card_cont.appendChild(card6each_cont)
+
+  alleve_cont.appendChild(card_cont)
+  ue_cont.appendChild(alleve_cont)
+  cont.appendChild(ue_cont);
+
+document.body.appendChild(cont);
+// ***************************************************************************
+  //last container 
+  const last_cont = document.createElement("div")
+  last_cont.className="d-flex flex-row justify-content-center "
+  last_cont.setAttribute("style","background-color:#b8d6f5;")
+
+  const text_con = document.createElement("div")
+  text_con.setAttribute("style", "margin-top:100px; margin-left:50px; width:50%;")
+ 
+  const l_para = document.createElement("p")
+  l_para.textContent = "Leading businesses, research labs and universities-choose us as their healthcare intelligence partners."
+  l_para.setAttribute("style", "font-size:30px;")
+  text_con.appendChild(l_para)
+
+  const l_button = document.createElement("button")
+   l_button.textContent = "Join our Mailing List"
+   l_button.setAttribute("style", "height:50px; width:400px; margin-bottom:26px")
+   text_con.appendChild(l_button)
+   last_cont.appendChild(text_con)
+
+  const l_image = document.createElement("img")
+  l_image.setAttribute("src", "https://pumas.ai/images/pumasai/news-events/mail.png")
+  l_image.setAttribute("style", "margin-right:40px ")
+  last_cont.appendChild(l_image)
+
+  document.body.appendChild(last_cont)
+
+  //Footer 
+
+const footer = document.createElement("div")
+  footer.setAttribute("style","background-color:#1a1b1c; height:400px")
+
+  //sub container
+  const sub_cont = document.createElement("div")
+
+  //footer logo 
+  const f_logo = document.createElement("img");
+  f_logo.setAttribute("src", "https://i.ibb.co/q38LdDh9/pumasAI.png ");
+  f_logo.setAttribute("style", "height:80px; margin-left:320px");
+  f_logo.className = "pt-4"
+  f_logo.style.width= "200px";
+  sub_cont.append(f_logo) 
+ 
+// details container 
+  const info_cont = document.createElement("div")
+  info_cont.className = "d-flex flex-row justify-content-around fs-5 p-5"
+  info_cont.setAttribute("style", "width:100%; ")
+
+
+  const info1_cont = document.createElement("div")
+  const ul1 = document.createElement("ul")
+  ul1.setAttribute("style", "color:white; list-style-type:none; padding-left:200px;")
+
+  const li1 = document.createElement("li")
+  li1.textContent = "Pumas-AI inc."
+  const li2 = document.createElement("li")
+  li2.textContent = "3500 South Dupont Highway."
+  const li3 = document.createElement("li")
+  li3.textContent = "Suite GT-101"
+  const li4 = document.createElement("li")
+  li4.textContent = "Dover, DE 19901"
+  const li5 = document.createElement("li")
+  li5.textContent = "Email: info@pumas.ai"
+  ul1.append(li1,li2,li3,li4,li5)
+
+  const icon = document.createElement("div")
+  icon.className = "d-flex flex-row justify_content_start m-4 p-4"
+   //twitter                                                                        (clickabe)
+   var twitter_icon = document.createElement("img");
+   twitter_icon.setAttribute("src", "https://i.ibb.co/j94Cz7CM/twitter.png");
+   twitter_icon.setAttribute("style", "height:30px; width:30px");
+  //  console.log(twitter);
+   icon.appendChild(twitter_icon) 
+
+   //linkdin                                                                         (clickabe)
+   var linkdin_icon = document.createElement("img");
+   linkdin_icon.setAttribute("src", "https://i.ibb.co/Gv9GzRGF/linkdin.png");
+   linkdin_icon.setAttribute("style", "height:30px; width:30px");
+  //  console.log(twitter);
+   icon.appendChild(linkdin_icon) 
+  ul1.appendChild(icon)
+  info1_cont.appendChild(ul1)
+  info_cont.appendChild(ul1) 
+
+  const info2_cont = document.createElement("div")
+  const ul2 = document.createElement("ul")
+  ul2.setAttribute("style", "color:white; list-style-type:none;")
+  
+  const li2_1 = document.createElement("li")
+  li2_1.textContent = "Our Product"
+  const li2_2 = document.createElement("li")
+  li2_2.textContent = "Out Team"
+  const li2_3 = document.createElement("li")
+  li2_3.textContent = "Contact"
+  ul2.append(li2_1,li2_2,li2_3)
+  info2_cont.appendChild(ul2)
+
+  const info3_cont = document.createElement("div")
+  
+  const ul3 = document.createElement("ul")
+  ul3.setAttribute("style", "color:white; list-style-type:none;")
+
+  const li3_1 = document.createElement("li")
+  li3_1.textContent = "Our Service"
+  const li3_2 = document.createElement("li")
+  li3_2.textContent = "News"
+  const li3_3 = document.createElement("li")
+  li3_3.textContent = "Events"
+  ul3.append(li3_1,li3_2,li3_3)
+  info3_cont.appendChild(ul3)
+
+  const info4_cont = document.createElement("div") 
+
+  const ul4 = document.createElement("ul")
+  ul4.setAttribute("style", "color:white; list-style-type:none;")
+
+  const li4_1 = document.createElement("li")
+  li4_1.textContent = "Our Customers"
+  const li4_2 = document.createElement("li")
+  li4_2.textContent = "Resources"
+  const li4_3 = document.createElement("li")
+  li4_3.textContent = "Careers"
+  ul4.append(li4_1,li4_2,li4_3)
+  info4_cont.appendChild(ul4)
+
+  info_cont.appendChild(info1_cont)
+   info_cont.appendChild(info2_cont)
+   info_cont.appendChild(info3_cont)
+  info_cont.appendChild(info4_cont)
+  sub_cont.appendChild(info_cont)
+
+  footer.appendChild(sub_cont)
+  document.body.appendChild(footer)
+  </script>
+</html>
+
+
