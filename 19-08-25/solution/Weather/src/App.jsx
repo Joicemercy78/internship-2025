@@ -40,7 +40,7 @@ const App = () => {
     <Container
       sx={{
         width: "40vw",
-        height: "90vh",
+        height: "98vh",
         background: renderBg(selectedForecast ? selectedForecast.condition : selectedCity.condition),
       }}
     >
